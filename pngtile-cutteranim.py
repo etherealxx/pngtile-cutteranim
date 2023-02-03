@@ -4,13 +4,15 @@ from PIL import Image, ImageFont, ImageDraw
 Image.MAX_IMAGE_PIXELS = None
 
 #customizable
+splitted_width = 512
+splitted_height = 768
 number_of_splits = 4
 text_on_the_left = True
 texts = ["Macross Anime", "Anything v3", "Aphrodite RealGirls", "Art and Eros Prune-Fix"] #
 x_pos_of_text = [205, 270, 130, 70] #ignore this if text_on_the_left is true
 #customizable
 
-chunk_size = (512 * number_of_splits, 768)
+chunk_size = (splitted_width * number_of_splits, splitted_height)
 def split_image(image_path, chunk_size):
 
     img = Image.open(image_path)
@@ -69,9 +71,9 @@ if __name__ == "__main__":
 
         # Create the output images
         for x in range (1, number_of_splits + 1):
-            topright = x * 512
-            topleft = topright - 512
-            exec(f"output{x} = image.crop(({topleft}, 0, {topright}, 768))")
+            topright = x * splitted_width
+            topleft = topright - splitted_width
+            exec(f"output{x} = image.crop(({topleft}, 0, {topright}, {splitted_height}))")
 
         # Get the base name of the image (without the file extension)
         base_name = os.path.splitext(image_name)[0]
