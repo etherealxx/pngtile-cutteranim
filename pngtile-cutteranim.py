@@ -7,9 +7,11 @@ Image.MAX_IMAGE_PIXELS = None
 splitted_width = 512
 splitted_height = 768
 number_of_splits = 4
-text_on_the_left = True
-texts = ["Macross Anime", "Anything v3", "Aphrodite RealGirls", "Art and Eros Prune-Fix"] #
+texts = ["Macross Anime", "Anything v3", "Aphrodite RealGirls", "Art and Eros Prune-Fix"] #be sure to add text to this when you add more number of splits
 x_pos_of_text = [205, 270, 130, 70] #ignore this if text_on_the_left is true
+textfont = "OpenSansCondensed-Bold.ttf" #name of the font located on C:\Windows\Font
+text_on_the_left = True #if true, all text will get x=10 from the left
+textsize = 50
 #customizable
 
 chunk_size = (splitted_width * number_of_splits, splitted_height)
@@ -25,27 +27,25 @@ def split_image(image_path, chunk_size):
 
 if __name__ == "__main__":
     input_folder = sys.argv[1]
-    if input_folder == '':
+    if input_folder == "":
         print("You need to drag and drop the desired folder that contains all the image you want to convert to the bat file")
-        os.system('pause')
+        os.system("pause")
         exit()
 
     print("Working directory is: " + input_folder)
     print()
-
-    
 
     for file in os.listdir(input_folder):
         if file.endswith(".png"):
             file_path = os.path.join(input_folder, file)
             path = os.path.dirname(file_path)
             filename = os.path.splitext(os.path.basename(file_path))[0]
-            print('splitting image ' + filename)
+            print("splitting image " + filename)
             count = 1
 
             for idx, chunk in enumerate(split_image(file_path, chunk_size)):
                 chunk.save(f"{path}/{filename}_{idx}.png")
-                print('image ' + filename + ' splitted part ' + str(count))
+                print("image " + filename + " splitted part " + str(count))
                 count += 1
 
             image_hugedonepath = os.path.join(input_folder + "\\raw_huge_image")    
@@ -80,9 +80,9 @@ if __name__ == "__main__":
 
         # Save the output images
         for x in range (1, number_of_splits + 1):
-            exec(f'output{x}.save(os.path.join(input_folder, base_name + "_temp{x}.png"))')
+            exec(f"output{x}.save(os.path.join(input_folder, base_name + \"_temp{x}.png\"))")
 
-        print(f'Cropped "{image_name}" into {number_of_splits} temporary images')
+        print(f"Cropped \"{image_name}\" into {number_of_splits} temporary images")
 
         # Write text on all four tempfiles
         for x in range (1, number_of_splits + 1):
@@ -92,7 +92,7 @@ if __name__ == "__main__":
             draw = ImageDraw.Draw(img)
 
             # Set the font and size of the text
-            font = ImageFont.truetype("OpenSansCondensed-Bold.ttf", 50)
+            font = ImageFont.truetype(textfont, textsize)
 
             # Set the position and the text itself
             currenttext = texts[x-1]
@@ -121,7 +121,7 @@ if __name__ == "__main__":
         # Save the animation as an APNG
         print("Saving the apng of " + image_name + "...")
         #image1.save(os.path.join(input_folder, base_name + "_anim.png"), save_all=True, append_images=images[1:], duration=durations, loop=0)
-        os.system('apngasm64 "{}" "{}_temp*.png" 3 2'.format(os.path.join(input_folder, base_name + "_anim.png"), os.path.join(input_folder, base_name)))
+        os.system("apngasm64 \"{}\" \"{}_temp*.png\" 3 2".format(os.path.join(input_folder, base_name + "_anim.png"), os.path.join(input_folder, base_name)))
         print()
         print("Apng saved as " + base_name + "_anim.png")
 
