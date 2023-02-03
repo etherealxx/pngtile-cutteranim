@@ -1,7 +1,7 @@
 # pngtile-cutteranim
 
 Say you have a huge png with 2048x3072 resolution, which actually is a tile of 16 images with 512x768 resolution each. <br/>
-***Put that image into a folder, and drag and drop the folder into the .bat file**, and the tool will works.<br/><br/>
+**Put that image into a folder, and drag and drop the folder into the .bat file**, and the tool will works.<br/><br/>
 This tool (by default) will split that huge png into 4 horizontal image, each with 2048x768 resolution. And each horizontal image will be:
 
 - Cutted to 512x768 image each
@@ -25,14 +25,14 @@ You will notice these on the top of the python file
 splitted_width = 512
 splitted_height = 768
 number_of_splits = 4
-text_on_the_left = True
-texts = ["Macross Anime", "Anything v3", "Aphrodite RealGirls", "Art and Eros Prune-Fix"] #
-textfont = "OpenSansCondensed-Bold.ttf"
-textsize = 50
+texts = ["Macross Anime", "Anything v3", "Aphrodite RealGirls", "Art and Eros Prune-Fix"] #be sure to add text to this when you add more number of splits
 x_pos_of_text = [205, 270, 130, 70] #ignore this if text_on_the_left is true
+textfont = "OpenSansCondensed-Bold.ttf" #name of the font located on C:\Windows\Font
+text_on_the_left = True #if true, all text will get x=10 from the left
+textsize = 50
 ```
 
-Those things can be customized yo your likings. Most of it are self-explanatory.
+Those things can be customized to your likings. Most of it are self-explanatory.
 
 `textfont` are the filename of the `.ttf` file located on `C:\Windows\Fonts`.
 
