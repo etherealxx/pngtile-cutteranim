@@ -15,8 +15,10 @@ This tool (by default) will split that huge png into 4 horizontal image, each wi
 
 And the final result will be 4 apng images, each containing 4 images animated with 2 seconds duration for each frame.
 
-## Prerequisite
+## Prerequisite (Important!!)
 
+- You have `Python` installed on your PC (well of course)
+- Update `Pillow` to the latest version by typing `pip install Pillow` in the cmd then hit enter
 - Download `apngasm64.exe` from [here](https://sourceforge.net/projects/apngasm/files/2.91/apngasm-2.91-bin-win64.zip/download) and copy the executable to `C:\Windows`
 - Download `pngnq-s9.exe` from [here](https://sourceforge.net/projects/pngnqs9/files/pngnq-s9-2.0.2.zip/download), extract the file, and copy the executable to `C:\Windows`
 - Download `OpenSans-CondensedBold.ttf` from [here](https://github.com/googlefonts/opensans/raw/main/fonts/ttf/OpenSans-CondensedBold.ttf), rename it to `OpenSansCondensed-Bold.ttf` and install it for all user
